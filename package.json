@@ -1,0 +1,39 @@
+{
+  "name": "restaurant",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --exec babel-node ./src/server.js",
+    "test": "mocha --require @babel/register 'src/**/**spec.js'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/plugin-transform-runtime": "^7.7.6",
+    "@babel/runtime": "^7.7.6",
+    "chai-http": "^4.3.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.3.0",
+    "http-errors": "^1.7.3",
+    "jsonfile": "^5.0.0",
+    "mongoose": "^5.8.1",
+    "morgan": "^1.9.1",
+    "nodemon": "^2.0.2",
+    "sinon-test": "^2.4.1",
+    "swagger-express-middleware": "^2.0.4",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.5",
+    "@babel/node": "^7.7.4",
+    "@babel/preset-env": "^7.7.6",
+    "@babel/register": "^7.7.4",
+    "chai": "^4.2.0",
+    "mocha": "^6.2.2",
+    "sinon": "^7.5.0",
+    "supertest": "^4.0.2"
+  }
+}
