@@ -1,7 +1,7 @@
 process.env.NODE_ENV = 'test';
 import dotenv from 'dotenv';
 import path from 'path';
-
+const bluebird = require('bluebird');
 // dotenv.config({ path: path.resolve('/Users/krish/workshops/mindtree-301-node/services/restaurant/test.env')});
 
 // console.log('path is ', path.resolve('/Users/krish/workshops/mindtree-301-node/services/restaurant/test.env'))
@@ -164,35 +164,23 @@ it('should call mock test',  function(done) {
 });
 
 
-// it('should call service with getRestaurant with id',  function(done) {
-//     var responseObject = { id: '12345', name: 'foo' };
+it('should call service with getRestaurant with id',  function(done) {
+    var responseObject = { id: '12345', name: 'foo' };
    
 
-//    const findByIdStub = sinon.stub(Restaurant, "findById").yields(null, responseObject);
+   const findByIdStub = sinon.stub(Restaurant, "findById").usingPromise(bluebird.Promise).resolves(responseObject);
+     getRestaurant('12345')
+    .then( result => {
+        expect(result).to.have.property('name');
+        expect(result.name).to.equal('foo');
+        expect(result.id).to.equal('12345');
+        // to release the stuff
+        findByIdStub.restore();
 
-//     getRestaurant('12345')
-//     .then( result => {
-//         expect(result).to.have.property('name');
-//         expect(result.name).to.equal('foo');
-//         expect(result.id).to.equal('12345');
-//         // to release the stuff
-//         findByIdStub.restore();
-
-//         done();
-//     }) 
-
-//     // Restaurant.findOne({}, function(err, result){
-//     //     console.log(result)
-//     //     expect(result).to.have.property('name');
-
-//     //     expect(result.name).to.equal('foo');
-
-//     //     // to release the stuff
-//     //     findByIdStub.restore();
-
-//     //     done();
-//     // })
-// });
+        done();
+    }) 
+ 
+});
 
 
 
