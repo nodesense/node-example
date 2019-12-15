@@ -168,12 +168,18 @@ it('should call service with getRestaurant with id',  function(done) {
     var responseObject = { id: '12345', name: 'foo' };
    
 
-   const findByIdStub = sinon.stub(Restaurant, "findById").usingPromise(bluebird.Promise).resolves(responseObject);
+   const findByIdStub = sinon.stub(Restaurant, "findById")
+                        .usingPromise(bluebird.Promise)
+                        .resolves(responseObject);
      getRestaurant('12345')
     .then( result => {
         expect(result).to.have.property('name');
         expect(result.name).to.equal('foo');
         expect(result.id).to.equal('12345');
+
+        result.id.should.equal('12345');
+        
+
         // to release the stuff
         findByIdStub.restore();
 

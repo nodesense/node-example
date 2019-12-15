@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --exec babel-node ./src/server.js",
-    "test": "mocha --require @babel/register 'src/**/**spec.js'"
+    "test": "mocha --timeout 10000 --require @babel/register --require ./src/tests/initialize.js  'src/**/**spec.js'"
   },
   "keywords": [],
   "author": "",
@@ -25,6 +25,8 @@
     "nodemon": "^2.0.2",
     "sinon-test": "^2.4.1",
     "swagger-express-middleware": "^2.0.4",
+    "swagger-jsdoc": "^3.5.0",
+    "swagger-ui-express": "^4.1.2",
     "winston": "^3.2.1"
   },
   "devDependencies": {

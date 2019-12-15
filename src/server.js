@@ -8,7 +8,7 @@ import './app/config/db';
 import app from './app';
 
 const IP_ADDRESS = process.env.IP_ADDRESS || '127.0.0.1';
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 7777;
 
 var server = http.createServer(app)
 
