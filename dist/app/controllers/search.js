@@ -1,0 +1,4 @@
+"use strict";Object.defineProperty(exports, "__esModule", { value: true });exports.search = search;function search(req, res) {
+
+}
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9hcHAvY29udHJvbGxlcnMvc2VhcmNoLmpzIl0sIm5hbWVzIjpbInNlYXJjaCIsInJlcSIsInJlcyJdLCJtYXBwaW5ncyI6Im1HQUFPLFNBQVNBLE1BQVQsQ0FBZ0JDLEdBQWhCLEVBQXFCQyxHQUFyQixFQUEwQjs7QUFFaEMiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgZnVuY3Rpb24gc2VhcmNoKHJlcSwgcmVzKSB7XG4gICAgXG59Il19

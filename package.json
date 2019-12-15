@@ -5,12 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --exec babel-node ./src/server.js",
-    "test": "mocha --timeout 10000 --require @babel/register --require ./src/tests/initialize.js  'src/**/**spec.js'"
+    "test": "mocha --timeout 10000 --require @babel/register --require ./src/tests/initialize.js  'src/**/**spec.js'",
+    "build": "babel ./src --out-dir ./dist "
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/cli": "^7.7.5",
     "@babel/plugin-transform-runtime": "^7.7.6",
     "@babel/runtime": "^7.7.6",
     "bluebird": "^3.7.2",

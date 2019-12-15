@@ -31,3 +31,6 @@ Aggregator Gateway Service : express
 
 https://thomashunter.name/presentations/node-consul/#/16
 
+npm install @babel/cli
+
+and refer package.json with build command

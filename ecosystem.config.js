@@ -2,9 +2,9 @@ module.exports = {
     apps : [
       {
       name        : "app1",
-      script      : "./test-app.js",
+      script      : "./dist/server.js",
       watch       : true,
-      instances  : 1,
+      instances  : 4,
       exec_mode  : "cluster",
       env: {
         PORT: 8881
@@ -12,7 +12,7 @@ module.exports = {
     },
     {
       name        : "app2",
-      script      : "./test-app.js",
+      script      : "./dist/server.js",
       watch       : true,
       instances  : 1,
       exec_mode  : "cluster",

@@ -1,0 +1,4 @@
+"use strict";require("dotenv/config");
+
+console.log('test initialize');
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy90ZXN0cy9pbml0aWFsaXplLmpzIl0sIm5hbWVzIjpbImNvbnNvbGUiLCJsb2ciXSwibWFwcGluZ3MiOiJhQUFBOztBQUVBQSxPQUFPLENBQUNDLEdBQVIsQ0FBWSxpQkFBWiIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCAnZG90ZW52L2NvbmZpZyc7XG5cbmNvbnNvbGUubG9nKCd0ZXN0IGluaXRpYWxpemUnKSJdfQ==
