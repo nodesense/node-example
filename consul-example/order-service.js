@@ -31,20 +31,13 @@ consul.acl.bootstrap(function(err, result) {
     if (err) throw err;
   });
 
-
-
-consul.kv.set('test2', 'hello world2').then(function() {
-    consul.kv.keys().spread(function(data, res) {
-      console.log('data:', data);
-      console.log('headers:', res.headers);
-    });
-  });
-
+ 
   const express = require('express');
 
   const app = express();
   
   const PORT = process.env.PORT || 8889;
+  const IP_ADDRESS = process.env.IP_ADDRESS || 'localhost';
   
   app.get('/', function(req, res){
       return res.send(` process id ${process.pid} - PORT ${PORT} `)
@@ -59,9 +52,9 @@ consul.kv.set('test2', 'hello world2').then(function() {
 
 const CONSUL_ID = require('uuid').v4();
 let details = {
-  name: 'data', // service group name search or order
-  address: 'localhost',
-  port: 8889,
+  name: 'order', // service group name search or order
+  address: IP_ADDRESS,
+  port: PORT,
   id: CONSUL_ID,
   check: {
     ttl: '10s',
@@ -91,22 +84,4 @@ setInterval(() => {
   });
 
   // -----------------
-
-let known_data_instances = [];
-
-const watcher = consul.watch({
-  method: consul.health.service,
-  options: {
-    service: 'data',
-    passing: true
-  }
-});
-
-watcher.on('change', data => {
-  known_data_instances = [];
-  data.forEach(entry => {
-    known_data_instances.push(`http://${entry.Service.Address}:${entry.Service.Port}/`);
-  });
-
-  console.log("Available serviers", known_data_instances);
-});
+  
