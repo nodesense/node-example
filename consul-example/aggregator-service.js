@@ -72,3 +72,21 @@ orderWatcher.on('change', data => {
 
   console.log("Available known_order_instances services ", known_order_instances);
 });
+
+const express = require('express');
+const app = express();
+const fetch = require('node-fetch');
+
+app.get('/', function(req, res) {
+  const index = Math.floor(known_search_instances.length * Math.random());
+  const nextUrl = known_search_instances[index];
+  console.log('serving from ', nextUrl);
+  return fetch(`${nextUrl}restaurants`)
+         .then (response => response.json())
+         .then ( results => {
+           res.json(results);
+         })
+
+})
+
+app.listen(9999);
