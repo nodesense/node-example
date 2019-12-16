@@ -106,3 +106,16 @@ docker run --name=restaurant   --network="host" -d krish/restaurant-service
 docker logs -f 783559dbe24096a11a8ce76bcc1ce84d533011efb0c0f045d67ac2751b440f87
 ----
 
+
+
+# Code Coverage Report using NYC and HTML
+
+npm install nyc @istanbuljs/nyc-config-babel
+
+
+modify your .babelrc
+
+add .nycrc in project root folder
+and copy the content from page
+
+refer package.json scripts coverage section for the command
