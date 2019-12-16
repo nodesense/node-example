@@ -42,15 +42,18 @@ docker pull redis
 
 docker run --name redis_d -d -p 6379:6379 redis
 
+# If you want to get into docker vm bash shell
 docker exec -it redis_d bash
 
 
-# docker exec -d redis touch /tmp/execWorks
+---
 
+To Stop Docker and remove
 
 docker stop 78974b041439
 docker rm 78974b041439
 
+---
 
 docker pull mongo
 
