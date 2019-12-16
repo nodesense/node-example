@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --exec babel-node ./src/server.js",
-    "test": "mocha --timeout 10000 --require @babel/register --require ./src/tests/initialize.js  'src/**/**spec.js'",
-    "build": "babel ./src --out-dir ./dist "
+    "test": "mocha --timeout 10000 --require @babel/register    'src/**/**spec.js'",
+    "build": "babel ./src --out-dir ./dist ",
+    "coverage": "nyc --reporter=html  mocha --timeout 10000    --require @babel/register  'src/**/**spec.js' "
   },
   "keywords": [],
   "author": "",
@@ -15,6 +16,7 @@
     "@babel/cli": "^7.7.5",
     "@babel/plugin-transform-runtime": "^7.7.6",
     "@babel/runtime": "^7.7.6",
+    "@istanbuljs/nyc-config-babel": "^2.1.1",
     "amqplib": "^0.5.5",
     "bluebird": "^3.7.2",
     "chai-http": "^4.3.0",
@@ -28,6 +30,7 @@
     "morgan": "^1.9.1",
     "node-fetch": "^2.6.0",
     "nodemon": "^2.0.2",
+    "nyc": "^14.1.1",
     "sinon-test": "^2.4.1",
     "swagger-express-middleware": "^2.0.4",
     "swagger-jsdoc": "^3.5.0",

@@ -1,5 +1,5 @@
 export default {
-    MongoUrl: process.env.MONGO_URL
+    MongoUrl: process.env.MONGO_URL || 'mongodb://localhost/test'
 }
 
 // to use 

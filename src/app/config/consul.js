@@ -61,7 +61,7 @@ consul.acl.bootstrap(function(err, result) {
         if (err) throw new Error(err);
         console.log('told Consul that we are healthy');
       });
-    }, 5 * 1000);
+    }, 1 * 1000);
   
     process.on('SIGINT', () => {
       console.log('SIGINT. De-Registering...');

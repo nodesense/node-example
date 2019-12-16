@@ -99,7 +99,8 @@ docker build -t krish/restaurant-service .
 docker images
 
 docker run -p 7777:7777 --net="host" -d krish/restaurant-service 
-docker run   --network="host" -d krish/restaurant-service 
+
+docker run --name=restaurant   --network="host" -d krish/restaurant-service 
 
 
 docker logs -f 783559dbe24096a11a8ce76bcc1ce84d533011efb0c0f045d67ac2751b440f87
