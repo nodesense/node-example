@@ -17,7 +17,8 @@ function fromCallback(fn) {
       }
     });
   }
-var consul = require('consul')({ promisify: fromCallback });
+var consul = require('consul')({ promisify: fromCallback,
+                                 host: '127.0.0.1' });
 
 
 consul.acl.bootstrap(function(err, result) {
