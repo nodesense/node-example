@@ -1,4 +1,5 @@
 import Restaurant from '../models/restaurant';
+const sendToQueue = require('../config/message-queue');
 
 export const createRestaurant = async (restaurantData) => {
     try {
@@ -6,6 +7,14 @@ export const createRestaurant = async (restaurantData) => {
     const restaurant = new Restaurant(restaurantData);
     const savedRestaurant = await restaurant.save();
     console.log('saved ', savedRestaurant);
+
+    const msg = {
+        id: '12',
+        amount: 100
+    }
+
+    sendToQueue(msg)
+    
     return savedRestaurant;
     }
     catch (error) {
