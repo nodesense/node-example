@@ -4,7 +4,7 @@ var Bluebird = require('bluebird');
 const CONSUL_HOST = process.env.CONSUL_HOST || 'localhost';
 const APP_SERVICE_NAME = process.env.APP_SERVICE_NAME || 'SEARCH-SERVICE';
 const IP_ADDRESS = process.env.IP_ADDRESS || '127.0.0.1'
-const PORT = process.env.PORT || 7777;
+const PORT = +process.env.PORT || 7777;
 const CONSUL_ID = require('uuid').v4();
 
 console.log('consul register port ', PORT);
