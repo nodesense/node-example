@@ -39,7 +39,7 @@ let known_search_instances = [];
 const watcher = consul.watch({
   method: consul.health.service,
   options: {
-    service: 'search',
+    service: 'SEARCH-SERVICE',
     passing: true
   }
 });

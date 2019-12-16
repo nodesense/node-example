@@ -1,6 +1,13 @@
 
 // var consul = require('consul')();
 var Bluebird = require('bluebird');
+const CONSUL_HOST = process.env.CONSUL_HOST || 'localhost';
+const APP_SERVICE_NAME = process.env.APP_SERVICE_NAME || 'SEARCH-SERVICE';
+const IP_ADDRESS = process.env.IP_ADDRESS || '127.0.0.1'
+const PORT = process.env.PORT || 7777;
+const CONSUL_ID = require('uuid').v4();
+
+console.log('consul register port ', PORT);
 
 function fromCallback(fn) {
     return new Bluebird(function(resolve, reject) {
@@ -18,7 +25,7 @@ function fromCallback(fn) {
     });
   }
 var consul = require('consul')({ promisify: fromCallback,
-                                 host: '127.0.0.1' });
+                                 host: CONSUL_HOST });
 
 
 consul.acl.bootstrap(function(err, result) {
@@ -33,46 +40,37 @@ consul.acl.bootstrap(function(err, result) {
   });
 
 
- 
-let known_search_instances = [];
 
-const watcher = consul.watch({
-  method: consul.health.service,
-  options: {
-    service: 'search',
-    passing: true
-  }
-});
-
-watcher.on('change', data => {
-    known_search_instances = [];
-  data.forEach(entry => {
-    known_search_instances.push(`http://${entry.Service.Address}:${entry.Service.Port}/`);
-  });
-
-  console.log("Available search services ", known_search_instances);
-});
-
-
-let known_order_instances = [];
-
-const orderWatcher = consul.watch({
-  method: consul.health.service,
-  options: {
-    service: 'order',
-    passing: true
-  }
-});
-
-orderWatcher.on('change', data => {
-    known_order_instances = [];
-  data.forEach(entry => {
-    known_order_instances.push(`http://${entry.Service.Address}:${entry.Service.Port}/`);
-  });
-
-  console.log("Available known_order_instances services ", known_order_instances);
-});
-
-module.exports = getSearchServiceUrl() {
-    return known_search_instances[ Math.floor(known_search_instances.length * Math.random())]
-}
+  let details = {
+    name: APP_SERVICE_NAME, // service group name search or order
+    address: IP_ADDRESS,
+    port: PORT,
+    id: CONSUL_ID,
+    check: {
+      ttl: '10s',
+      deregister_critical_service_after: '1m'
+    }
+  };
+  consul.agent.service.register(details, err => {
+    // schedule heartbeat
+    console.log("register ", err)
+  }); 
+  
+  setInterval(() => {
+      consul.agent.check.pass({id:`service:${CONSUL_ID}`}, err => {
+        if (err) throw new Error(err);
+        console.log('told Consul that we are healthy');
+      });
+    }, 5 * 1000);
+  
+    process.on('SIGINT', () => {
+      console.log('SIGINT. De-Registering...');
+      let details = {id: CONSUL_ID};
+    
+      consul.agent.service.deregister(details, (err) => {
+        console.log('de-registered.', err);
+        process.exit();
+      });
+    });
+  
+    
