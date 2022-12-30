@@ -44,7 +44,7 @@
     "@babel/preset-env": "^7.7.6",
     "@babel/register": "^7.7.4",
     "chai": "^4.2.0",
-    "mocha": "^6.2.2",
+    "mocha": "^10.2.0",
     "sinon": "^7.5.0",
     "supertest": "^4.0.2"
   }
